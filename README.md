@@ -21,6 +21,8 @@ WHEN I refresh the page
 THEN the saved events persist - still working on this.  
 ```
 
+## Link
+* <https://jmalm79.github.io/work_day_scheduler/>   
 
 
-![Screenshot of current progress.](assets/images/...jpg)
+![Screenshot of current progress.](assets/work-day-scheduler-screenshot.png)
