@@ -8,7 +8,7 @@ var hEl = moment().format('HH');
 console.log(today);
 
 console.log(hEl);
-var textAreaEl;
+//var textAreaEl;
 
 //     <i class="fas fa-save">   <--- use this for file save icon
 
@@ -42,13 +42,14 @@ timesArray = [];
     if (timeObj.morning == true){   // step to add AM 
         timeObj.meridiem = "AM"
     }
-        timesArray.push(timeObj);
+    timesArray.push(timeObj);
         
 }
 
 console.log(timesArray);
 
 containerEl = $("#schedule");
+
 
 timesArray.forEach(function(timeObj, index){
     var rowEl = $('<div>');   
@@ -58,7 +59,7 @@ timesArray.forEach(function(timeObj, index){
     hourEl.text(timeObj.hour + timeObj.meridiem);
 
     var textAreaEl = $('<textArea>'); 
-    textAreaEl.addClass('col-10 textarea');
+    textAreaEl.addClass('col-10', 'textarea');
     textAreaEl.attr("data-index", index);
 
     var buttonEl = $('<button>');
@@ -69,29 +70,27 @@ timesArray.forEach(function(timeObj, index){
     rowEl.append(buttonEl);
 
     containerEl.append(rowEl);
-});
 
-
-function setHourClass(textAreaEl, index){
     if(timesArray[index].militaryTime < hEl){
         textAreaEl.addClass('past');
     }
     else if(timesArray[index].militaryTime == hEl){
         textAreaEl.addClass('present');
     }
-    if(timesArray[index].militaryTime > hEl){
+    else {
         textAreaEl.addClass('future');
     }
-    console.log(timesArray[index].meridiem);
+    console.log(timesArray[index].militaryTime); 
 
-}
+});
 
 
-$(".saveBtn").on("click", function(){
+ $(".saveBtn").on("click", function(event){
+    event.preventDefault();    
     textarea = $(this).siblings(".form-control").val();
     console.log(textarea);
     timesArray = $(this).siblings(".input-group-prepend").text();
     console.log(timesArray);
-    localStorage.setItem(timesArray, JSON.stringify(textarea));
+    localStorage.setItem(timesArray, JSON.stringify(textAreaEl));
 
 })
